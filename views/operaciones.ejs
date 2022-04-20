@@ -1,8 +1,54 @@
 <%- include('partials/head') %> 
 <body>
        
-    <h1>aca van estar listadas las operaciones</h1>
+  <h3 align ="center"> ultimas 10 </h3>
+      <!-- tabla de  ultimas 10 operaciones -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Concepto</th>
+            <th scope="col">Monto</th>
+            <th scope="col">Fecha</th>
+            
+          </tr>
+        </thead>
+        
+       <!-- traigo las 10 ultimas operacions (ya funciona no tocar!!) -->
+        <tbody>
+          <tr><% UltimasOperaciones.forEach(operacion=> {%>
+            <th scope="row"><%= operacion.Tipo%></th>
+            <td><%= operacion.Concepto%></td>
+            <td><%= operacion.Monto%></td>
+            <td><%= operacion.Fecha%></td>
+          </tr>
+          <% }) %>
+        </tbody>      
     
+<!-- muestro todas  las operaciones registradas en la base de datos-->
+ <!-- creo las columnas -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tipo</th>
+      <th scope="col">Concepto</th>
+      <th scope="col">Monto</th>
+      <th scope="col">Fecha</th>
+      
+    </tr>
+  </thead>
+  <h3 align="center">todas las operaciones</h3>
+ <!-- creo las filas con los datos de la base ( ya funciona no tocar!!)  -->
+  <tbody>
+    <tr><% operaciones.forEach(operacion => {%>
+      <th scope="row"><%= operacion.Tipo%></th>
+      <td><%= operacion.Concepto%></td>
+      <td><%= operacion.Monto%></td>
+      <td><%= operacion.Fecha%></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
     </body>
   
 </html>
