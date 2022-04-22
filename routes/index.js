@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var fs = require("fs");
+var path =require("path");
+
 
 
 
@@ -8,22 +10,23 @@ const database_operaciones =fs.readFileSync('./database.json','utf-8') // traigo
 const operaciones = JSON.parse(database_operaciones);// la leemos
 
 
-const UltimasOperaciones = operaciones.slice(-11);// ultimas 10 operaciones ,funciona pero va una operacion atrasada y no se porque 
+const UltimasOperaciones = operaciones.slice(-11);// ultimas 10 operaciones ,funciona bien parece
+
  // balance de operaciones
 const Ingresos = operaciones.forEach(operacion => { 
-     let  Ingreso = operacion.Tipo=== "Ingreso";
-      return Ingreso 
-     });
+     let  Ingreso = parseInt(operacion.Tipo.Ingreso);
+     //console.log(Ingreso);
+     }); // Trato de obtener los ingresos y pasarlos a numeros enteros pero no funca
 const Egresos = operaciones.forEach(operacion => {
-     let Egreso = operacion.Tipo ==="Egreso";
-       return Egreso
-    });    
+     let Egreso = parseInt(operacion.Tipo.Egreso);
+     //console.log(Egreso); 
+    }); // trato de obtener los egeresos  y pasarlos a numeros enteros  pero no funca   
 const Balance = Ingresos-Egresos;
 // no funca el balance 
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "administrador",});
+  res.render("index", { title: "administrador",UltimasOperaciones,operaciones,Balance});
 });
 // guardar datos del formulario
 router.post("/", (req, res, next) => {
@@ -47,7 +50,7 @@ router.post("/", (req, res, next) => {
 });
 /* GET operaciones page.*/
 router.get("/operaciones", function (req, res, next) {
-  res.render("operaciones", { title: "administrador",json_operaciones});
+  res.render("operaciones", { title: "administrador"});
 });
 
 module.exports = router;

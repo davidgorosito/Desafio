@@ -1,54 +1,38 @@
+
+<!--head-->
+
 <%- include('partials/head') %> 
+
 <body>
-       
-  <h3 align ="center"> ultimas 10 </h3>
-      <!-- tabla de  ultimas 10 operaciones -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Tipo</th>
-            <th scope="col">Concepto</th>
-            <th scope="col">Monto</th>
-            <th scope="col">Fecha</th>
-            
-          </tr>
-        </thead>
-        
-       <!-- traigo las 10 ultimas operacions (ya funciona no tocar!!) -->
-        <tbody>
-          <tr><% UltimasOperaciones.forEach(operacion=> {%>
-            <th scope="row"><%= operacion.Tipo%></th>
-            <td><%= operacion.Concepto%></td>
-            <td><%= operacion.Monto%></td>
-            <td><%= operacion.Fecha%></td>
-          </tr>
-          <% }) %>
-        </tbody>      
-    
-<!-- muestro todas  las operaciones registradas en la base de datos-->
- <!-- creo las columnas -->
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Tipo</th>
-      <th scope="col">Concepto</th>
-      <th scope="col">Monto</th>
-      <th scope="col">Fecha</th>
-      
-    </tr>
-  </thead>
-  <h3 align="center">todas las operaciones</h3>
- <!-- creo las filas con los datos de la base ( ya funciona no tocar!!)  -->
-  <tbody>
-    <tr><% operaciones.forEach(operacion => {%>
-      <th scope="row"><%= operacion.Tipo%></th>
-      <td><%= operacion.Concepto%></td>
-      <td><%= operacion.Monto%></td>
-      <td><%= operacion.Fecha%></td>
-    </tr>
-    <% }) %>
-  </tbody>
-</table>
-    </body>
-  
+<!--navbar-->
+<%- include('partials/navbar') %>
+<!--formulario de nueva operacion ( no manda datos no encuentro el error )-->  
+<div class="container-form">
+  <h3 align ="center"> crear una operacion </h3>
+<form action="/" method="POST"class="card card-body">
+<div class="form-group">
+ <label for="Concepto">Concepto</label>
+ <input type="text" class="form-control" placeholder=" ingresar concepto"  name="Concepto" required>
+</div>
+<div class="form-group">
+ <label for="Monto">Monto</label>
+ <input type="text" class="form-control" placeholder="ingresar monto"  name="Monto" required>
+</div>
+<div class="form-group">
+ <label for="fecha">Fecha</label>
+ <input type="text" class="form-control" placeholder="ingresar fecha"  name ="Fecha"required>
+</div><div class="form-group">
+ <label for="Tipo">Tipo</label>
+ <select class="form-select" aria-label="Default select example" name="Tipo">
+   <option selected> Seleciona un tipo</option>
+   <option value="Ingreso">ingreso</option>
+   <option value="Egreso">Egreso</option>
+ </select>
+</div>
+   <div class="col-auto my-1" >
+       <button type="submit" class="btn btn-primary" >crear</button>
+     </div>
+</form>
+</div>
+</body>
 </html>
